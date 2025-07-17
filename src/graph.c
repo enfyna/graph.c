@@ -243,12 +243,15 @@ void graph_draw(Graph* g)
     graph_draw_grid(g);
     graph_draw_lines(g);
 
-    if (IsKeyDown(KEY_TAB)) {
-        graph_draw_line_value_at_mouse(g);
-    }
+    Vector2 mpos = GetMousePosition();
+    if (CheckCollisionPointRec(mpos, g->bound)) {
+        if (IsKeyDown(KEY_TAB)) {
+            graph_draw_line_value_at_mouse(g);
+        }
 
-    if (IsKeyPressed(KEY_P)) {
-        graph_print_position(g);
+        if (IsKeyPressed(KEY_P)) {
+            graph_print_position(g);
+        }
     }
 }
 
@@ -304,8 +307,9 @@ void graph_zoom(Graph* g, double zoom, double delta)
 void graph_print_position(Graph* g)
 {
     printf("Graph Current Stance:\n");
-    printf("Pos = (x: %.2lf, y: %.2lf)\n", g->st_current.pos.x, g->st_current.pos.y);
-    printf("Scale = (x: %.2lf, y: %.2lf, z: %.2lf)\n", g->st_current.scale.x, g->st_current.scale.y, g->st_current.scale.z);
+    printf("g.st_reset.pos = (Vector2) { .x = %.2lf, .y = %.2lf };\n", g->st_current.pos.x, g->st_current.pos.y);
+    printf("g.st_reset.scale = (Vector3) { .x = %.2lf, .y = %.2lf, .z = %.2lf };\n", g->st_current.scale.x, g->st_current.scale.y, g->st_current.scale.z);
+    printf("g.st_current = g.st_reset;\n");
 }
 
 void graph_free(Graph* g)
