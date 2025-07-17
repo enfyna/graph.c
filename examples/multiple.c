@@ -26,10 +26,10 @@ int main(void)
         g->st_reset.scale = (Vector3) { .x = 1.00, .y = 1.00, .z = 1.83 };
         g->st_current = g->st_reset;
 
-        Line* x = line_alloc(g, 101, "X", RED);
-        Line* y = line_alloc(g, 101, "Y", BLUE);
-        Line* l = line_alloc(g, 101, "Line", GREEN);
-        Line* c = line_alloc(g, 101, "Shape", YELLOW);
+        Line* x = line_alloc(g, 101, "X", RED, 2 + (i * 2));
+        Line* y = line_alloc(g, 101, "Y", BLUE, 2 + (i * 2));
+        Line* l = line_alloc(g, 101, "Line", GREEN, 2 + (i * 2));
+        Line* c = line_alloc(g, 101, "Shape", YELLOW, 2 + (i * 2));
 
         for (size_t j = 0; j < 101; j++) {
             x->points[j] = (Vector2) { j, 0.0 };
@@ -75,7 +75,7 @@ int main(void)
             if (CheckCollisionPointRec(mpos, g->bound)) {
                 if (IsKeyPressed(KEY_A)) {
                     int c = g->lines.count * 10 + 100;
-                    Line* r = line_alloc(g, 101, "Random", (Color) { c, c, 255, 255 });
+                    Line* r = line_alloc(g, 101, "Random", (Color) { c, c, 255, 255 }, 6);
 
                     for (size_t i = 0; i < 101; i++) {
                         r->points[i] = (Vector2) { i, (rand() / (double)RAND_MAX) * 10 };

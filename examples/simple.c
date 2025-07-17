@@ -18,10 +18,10 @@ int main(void)
 
     g.st_current = g.st_reset;
 
-    Line* x = line_alloc(&g, 101, "X", RED);
-    Line* y = line_alloc(&g, 101, "Y", BLUE);
-    Line* l = line_alloc(&g, 101, "Line", GREEN);
-    Line* c = line_alloc(&g, 101, "Circle", YELLOW);
+    Line* x = line_alloc(&g, 101, "X", RED, 6);
+    Line* y = line_alloc(&g, 101, "Y", BLUE, 6);
+    Line* l = line_alloc(&g, 101, "Line", GREEN, 12);
+    Line* c = line_alloc(&g, 101, "Circle", YELLOW, 12);
 
     for (size_t i = 0; i < 101; i++) {
         x->points[i] = (Vector2) { i, 0.0 };
@@ -52,7 +52,7 @@ int main(void)
 
         if (IsKeyPressed(KEY_A)) {
             int c = g.lines.count * 10 + 100;
-            Line* r = line_alloc(&g, 101, "Random", (Color) { c, c, 255, 255 });
+            Line* r = line_alloc(&g, 101, "Random", (Color) { c, c, 255, 255 }, 6);
 
             for (size_t i = 0; i < 101; i++) {
                 r->points[i] = (Vector2) { i, (rand() / (double)RAND_MAX) * 10 };

@@ -12,6 +12,7 @@
 typedef struct {
     const char* name;
     Color color;
+    size_t thickness;
     size_t count;
     Vector2 points[];
 } Line;
@@ -57,5 +58,5 @@ void graph_print_position(Graph* g);
 void graph_zoom(Graph* g, double zoom, double delta);
 void graph_free(Graph* g);
 
-Line* line_alloc(Graph* g, int count, const char* name, Color color);
+Line* line_alloc(Graph* g, int count, const char* name, Color color, size_t thickness);
 #endif // GRAPH_H

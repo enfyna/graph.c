@@ -10,13 +10,14 @@
 
 static void _graph_draw_line(Graph* g, Line* l);
 
-Line* line_alloc(Graph* g, int count, const char* name, Color color)
+Line* line_alloc(Graph* g, int count, const char* name, Color color, size_t thickness)
 {
     Line* l = malloc(sizeof(Line) + sizeof(Vector2) * count);
     assert(l != NULL);
 
     l->name = name;
     l->color = color;
+    l->thickness = thickness;
     l->count = count;
     memset(l->points, 0, sizeof(Vector2) * count);
 
@@ -147,7 +148,7 @@ static void _graph_draw_line(Graph* g, Line* line)
             DrawLineEx(
                 point,
                 prev_point,
-                2, line->color);
+                line->thickness, line->color);
         } else {
             continuous = true;
         }
