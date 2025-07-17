@@ -106,7 +106,7 @@ void graph_draw_lines(Graph* g)
             continue;
 
         double y = g->bound.y + 7 + 25 * i;
-        if (y < g->bound.height - 20) {
+        if (y < g->bound.y + g->bound.height - 20) {
             DrawRectangle(g->bound.x + 5, y, 20, 20, l->color);
             DrawText(l->name, g->bound.x + 28, y, 20, l->color);
         }
