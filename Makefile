@@ -1,4 +1,4 @@
-default: build/simple_a build/simple_so
+default: build/simple_a build/simple_so build/multiple_a build/multiple_so
 
 CC     	 ?= clang
 CFLAGS 	 ?= -Wall -Wextra -pedantic -I./include/ -g
@@ -12,6 +12,14 @@ build/simple_a: examples/simple.c include/graph.h src/graph.c lib/graph.a
 	$(CC) $(CFLAGS) -O0 -xc $< -o $@ $(RAYLIB_A) -L./lib -l:graph.a
 
 build/simple_so: examples/simple.c include/graph.h src/graph.c lib/libgraph.so
+	mkdir -p build
+	$(CC) $(CFLAGS) -O0 -xc $< -o $@ $(RAYLIB_SO) -L./lib -lgraph
+
+build/multiple_a: examples/multiple.c include/graph.h src/graph.c lib/graph.a 
+	mkdir -p build
+	$(CC) $(CFLAGS) -O0 -xc $< -o $@ $(RAYLIB_A) -L./lib -l:graph.a
+
+build/multiple_so: examples/multiple.c include/graph.h src/graph.c lib/libgraph.so
 	mkdir -p build
 	$(CC) $(CFLAGS) -O0 -xc $< -o $@ $(RAYLIB_SO) -L./lib -lgraph
 
